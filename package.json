@@ -1,6 +1,6 @@
 {
   "name": "d365-pp-pipeline-tasks",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Pipeline Tasks for D365/PowerPlatform",
   "main": "index.js",
   "scripts": {
@@ -19,12 +19,19 @@
   "homepage": "https://github.com/WebGateConsultingAG/D365-PP-PipeLine-Tasks#readme",
   "dependencies": {
     "azure-pipelines-task-lib": "^4.3.1",
-    "dynamics-web-api": "^1.7.8"
+    "dynamics-web-api": "^1.7.8",
+    "fs-extra": "^11.1.1"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.15.11",
     "@types/q": "^1.5.5",
-    "sync-request": "^6.1.0"
+    "find": "^0.3.0",
+    "gulp": "^4.0.2",
+    "sync-request": "^6.1.0",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "webpack": "^5.79.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }
