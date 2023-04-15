@@ -1,0 +1,29 @@
+{
+  "name": "d365-pp-pipeline-tasks",
+  "version": "1.0.0",
+  "description": "Pipeline Tasks for D365/PowerPlatform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebGateConsultingAG/D365-PP-PipeLine-Tasks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebGateConsultingAG/D365-PP-PipeLine-Tasks/issues"
+  },
+  "homepage": "https://github.com/WebGateConsultingAG/D365-PP-PipeLine-Tasks#readme",
+  "dependencies": {
+    "azure-pipelines-task-lib": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.15.11",
+    "@types/q": "^1.5.5",
+    "sync-request": "^6.1.0"
+  }
+}

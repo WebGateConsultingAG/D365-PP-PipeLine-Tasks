@@ -1,0 +1,54 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "4deefcd5-77ee-4504-9cc5-7ae9de22d3c3",
+    "name": "D365PPGetSolutionVersion",
+    "friendlyName": "D365/PP GetSolutionVersion",
+    "description": "Extracts the version number of a solution in a specific PowerPlatform environment",
+    "helpMarkDown": "",
+    "category": "Utility",
+    "author": "Christian Güdemann / WebGateConsultingAG",
+    "version": {
+        "Major": 0,
+        "Minor": 1,
+        "Patch": 0
+    },
+    "instanceNameFormat": "GetSolutionVersion of $(solutionName) as $()",
+    "inputs": [
+        {
+            "name": "solutionName",
+            "type": "string",
+            "label": "Solution Name",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "UniqueName of the solution"
+        },
+        {
+            "name": "powerPlatformSPN",
+            "type": "connectedService:powerplatform-spn",
+            "label": "Service connection",
+            "required": true,
+            "helpMarkDown": "Authenticate with your Power Platform environment with an Azure AppID, tenantID and client secret."
+        },
+        {
+            "name": "versionVariable",
+            "label": "Output Variable Name",
+            "type": "string",
+            "defaultValue": "d365ppSolutionVersion",
+            "required": true,
+            "helpMarkDown": "VariableName for the solution Output"
+        },
+        {
+            "name": "environment",
+            "label": "Environment Url",
+            "type": "string",
+            "defaultValue": "$(BuildTools.EnvironmentUrl)",
+            "required": false,
+            "helpMarkDown": "Environment url this task targets; default is the pipeline variable that e.g. the PowerPlatformTools -> CreateEnvironment  task has set before."
+        }
+    ],
+    "execution": {
+        "Node": {
+            "target": "index.js"
+        }
+    }
+}
