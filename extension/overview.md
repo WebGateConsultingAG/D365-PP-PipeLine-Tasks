@@ -1,4 +1,6 @@
-# D365-PP-PipeLine-Tasks
+**D365 / PowerPlatform Advanced Tools**
+==============================
+
 Overview
 --------
 
@@ -8,3 +10,10 @@ Use the D365 / PowerPlatform Advanced Tools for specialized operations. These Ta
 ## Feedback & Questions
 
 Please use the issues tracker in the home repo: <https://github.com/WebGateConsultingAG/D365-PP-PipeLine-Tasks/issues>
+
+
+# Release Notes
+
+{{NextReleaseVersion}}:
+- pac CLI 1.21.13
+

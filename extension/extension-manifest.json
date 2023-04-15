@@ -1,0 +1,56 @@
+{
+    "manifestVersion": 1,
+    "id": "D365PPAdvancedTools",
+    "publisher": "webgateconsultingag",
+    "version": "0.0.1",
+    "name": "D365 / PowerPlatform Advances Tools",
+    "description": "Automate advances and specialides build and deployment tasks related to Power Platform",
+    "categories": ["Azure Pipelines"],
+    "targets": [
+      {
+        "id": "Microsoft.VisualStudio.Services"
+      }
+    ],
+    "repository": {
+      "type": "git",
+      "uri": "https://github.com/WebGateConsultingAG/D365-PP-PipeLine-Tasks"
+    },
+    "public": false,
+    "galleryFlags": [],
+    "tags": ["Power Platform", "Dynamics 365", "Dynamics CRM", "Dynamics", "CRM"],
+    "branding": {
+      "color": "rgb(11, 11, 11)",
+      "theme": "dark"
+    },
+    "icons": {
+      "default": "assets/images/PPDevTools.128x128.png"
+    },
+    "screenshots": [
+      {
+        "path": "assets/images/sample-pipeline.png"
+      }
+    ],
+    "content": {
+      "details": {
+        "path": "overview.md"
+      },
+      "License": {
+        "path": "assets/EULA.md"
+      }
+    },
+    "links": {
+      
+      "support": {
+        "uri": "https://github.com/WebGateConsultingAG/D365-PP-PipeLine-Tasks/issues"
+      }
+    },
+    "files": [
+      {
+        "path": "assets/images",
+        "addressable": true
+      },
+      {
+        "path": "tasks"
+      }
+    ]
+  }

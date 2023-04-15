@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/WebGateConsultingAG/D365-PP-PipeLine-Tasks#readme",
   "dependencies": {
-    "azure-pipelines-task-lib": "^4.3.1"
+    "azure-pipelines-task-lib": "^4.3.1",
+    "dynamics-web-api": "^1.7.8"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
