@@ -1,4 +1,5 @@
-import tl = require('azure-pipelines-task-lib/task');
+import * as tl from 'azure-pipelines-task-lib/task';
+import {dynamicsAPIBuilder} from '../../common/dynamicsWebApiFactory';
 
 async function run() {
     try {
@@ -8,6 +9,7 @@ async function run() {
             return;
         }
         console.log('Hello', inputString);
+        const api = dynamicsAPIBuilder("","","","");
     }
     catch (err:any) {
         tl.setResult(tl.TaskResult.Failed, err.message);

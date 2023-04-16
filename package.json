@@ -18,20 +18,23 @@
   },
   "homepage": "https://github.com/WebGateConsultingAG/D365-PP-PipeLine-Tasks#readme",
   "dependencies": {
+    "@azure/msal-node": "^1.17.0",
     "azure-pipelines-task-lib": "^4.3.1",
     "dynamics-web-api": "^1.7.8",
-    "fs-extra": "^11.1.1"
+    "merge2": "^1.4.1"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.15.11",
     "@types/q": "^1.5.5",
     "find": "^0.3.0",
+    "fs-extra": "^11.1.1",
     "gulp": "^4.0.2",
-    "sync-request": "^6.1.0",
-    "ts-loader": "^9.4.2",
-    "ts-node": "^10.9.1",
-    "webpack": "^5.79.0",
-    "webpack-node-externals": "^3.0.0"
-  }
+    "gulp-sourcemap": "^1.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "sync-request": "^6.1.0"
+  },
+  "bundleDependencies": [
+    "azure-pipelines-task-lib"
+  ]
 }

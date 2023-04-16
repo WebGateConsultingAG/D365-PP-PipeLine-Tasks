@@ -12,14 +12,14 @@ module.exports = tasks.map((task) => ({
       {
         test: /\.ts$/,
         use: "ts-loader",
-        exclude: [/out/],
+        exclude: [/dist/],
       },
     ],
   },
-  mode: "development",
-  // mode: "production",
+  //mode: "development",
+  mode: "production",
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".ts", ".js",".json"],
   },
   output: {
     filename: task.replace(/\.ts$/, ".js").replace(/src[/\\]/, ""),

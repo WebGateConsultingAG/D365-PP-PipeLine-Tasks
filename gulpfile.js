@@ -1,7 +1,11 @@
 const gulp = require("gulp");
 
 const clean = require("./gulp/clean").clean;
-const compile = require("./gulp/compile");
+const compile = require("./gulp/compile").compile;
+gulp.task("clean", clean);
+gulp.task("compile", compile);
+gulp.task("recompile", gulp.series(clean, compile));
+
 //const lint = require("./gulp/lint");
 //const test = require("./gulp/test");
 //const restore = require("./gulp/restore");
@@ -9,7 +13,7 @@ const compile = require("./gulp/compile");
 
 exports.clean = clean;
 exports.compile = compile;
-exports.recompile = gulp.series(clean, compile);
+exports.recompile = 
 //exports.lint = lint;
 //exports.test = test.all;
 //exports.unitTest = test.unitTest;

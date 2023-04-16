@@ -1,8 +1,19 @@
 const { statSync } = require("fs-extra");
+const find = require("find");
 const path = require("path");
-const webpack = require("webpack");
+const gulp = require("gulp");
+var ts = require("gulp-typescript");
+const {readdir} = require('fs/promises');
+const merge = require("merge2");
 
-module.exports = function compile() {
+exports.compile = compile
+
+const getDirectories = async source =>
+  (await readdir(source, { withFileTypes: true }))
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => dirent.name)
+
+async function compile() {
   // detect if running on an AzDevOps build agent
   const packageJson = require("../package.json");
   if (process.env.BUILD_BUILDID) {
@@ -11,10 +22,19 @@ module.exports = function compile() {
   } else {
     console.log(`local build: ${packageJson.version}`);
   }
-  return new Promise((resolve) => {
-    const config = require("../webpack.config");
-    webpack(config).run(onBuild(resolve));
+  const tasks = await getDirectories("src/tasks");
+  console.log(tasks);
+  const running = tasks.map(dir=>{
+    const tsProject = ts.createProject("./src/tasks/"+dir +"/tsconfig.json");
+    //const tsProject = ts.createProject("tsconfig.json");
+    //return tsProject.src().on("error", (e)=>console.log(e));
+    return tsProject.src().pipe(tsProject(ts.reporter.defaultReporter()).on("error", (e)=>console.log(e))).js.pipe(gulp.dest("dist/tasks/"+dir));
+  
   });
+  console.log("RUNNING", running.length);
+  return merge(running);
+  //console.log(tsProject);
+  //await tsProject.src().pipe(tsProject()).js.pipe(gulp.dest("dist/tasks/"+dir))    
 };
 
 function onBuild(done) {
