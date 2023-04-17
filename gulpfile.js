@@ -2,6 +2,7 @@ const gulp = require("gulp");
 
 const clean = require("./gulp/clean").clean;
 const compile = require("./gulp/compile").compile;
+const compileTest = require("./gulp/compileTest").compileTest;
 
 //const lint = require("./gulp/lint");
 //const test = require("./gulp/test");
@@ -12,7 +13,7 @@ const createVsixPackage = require("./gulp/createVsixPackage").createVsixPackage;
 
 exports.clean = clean;
 exports.compile = compile;
-exports.recompile = gulp.series(clean, compile);
+exports.recompile = gulp.series(clean, compile, compileTest);
 exports.packOnly = packOnly;
 exports.pack = gulp.series(clean, compile, packOnly, buildExtensionFile, createVsixPackage);
 exports.buildExtensionFile = buildExtensionFile;
@@ -26,5 +27,5 @@ exports.createVsixPackage = createVsixPackage;
 //exports.pack = pack;
 //exports.repack = gulp.series(compile, pack);
 //exports.ci = gulp.series(recompile, lint, restore, test.unitTest, pack, test.functionalTest);
-exports.default = gulp.series(clean, compile);;
+exports.default = gulp.series(clean, compile, compileTest);;
 //exports.restore = restore;

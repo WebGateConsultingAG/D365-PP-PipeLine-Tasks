@@ -2,7 +2,6 @@ const { getDirectories } = require("./utils");
 const gulp = require("gulp");
 const fs = require('fs-extra');
 const path = require('path');
-const merge2 = require("merge2");
 
 
 

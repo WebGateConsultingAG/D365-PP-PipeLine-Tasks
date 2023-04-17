@@ -20,7 +20,10 @@ const packOnly = async () => {
         const job2 = gulp.src("src/tasks/" + dir + "/task.json").pipe(gulp.dest("dist/tasks/" + dir));
         return merge2(job1, job2);
     });
-    return merge2(copyJobs);
+    await new Promise((resolve,reject)=> merge2(copyJobs).on("queueDrain",()=>{
+        console.log("PACK completed");
+        resolve();
+    }));
 }
 
 exports.packOnly = packOnly;

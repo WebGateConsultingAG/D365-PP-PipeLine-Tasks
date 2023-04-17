@@ -1,6 +1,6 @@
 const gulp = require("gulp");
 const ts = require("gulp-typescript");
-const {getDirectories} = require("./utils");
+const { getDirectories } = require("./utils");
 const merge = require("merge2");
 
 async function compile() {
@@ -14,15 +14,18 @@ async function compile() {
   }
   const tasks = await getDirectories("src/tasks");
   console.log(tasks);
-  const running = tasks.map(dir=>{
-    const tsProject = ts.createProject("./src/tasks/"+dir +"/tsconfig.json");
+  const running = tasks.map(dir => {
+    const tsProject = ts.createProject("./src/tasks/" + dir + "/tsconfig.json");
     //const tsProject = ts.createProject("tsconfig.json");
     //return tsProject.src().on("error", (e)=>console.log(e));
-    return tsProject.src().pipe(tsProject(ts.reporter.defaultReporter()).on("error", (e)=>console.log(e))).js.pipe(gulp.dest("dist/tasks/"+dir));
-  
+    return tsProject.src().pipe(tsProject(ts.reporter.defaultReporter()).on("error", (e) => console.log(e))).js.pipe(gulp.dest("dist/tasks/" + dir));
+
   });
   console.log("RUNNING", running.length);
-  return merge(running);
+  await new Promise((resolve, reject) => merge(running).on("queueDrain", ()=> {
+    console.log("TS Compile done");
+    resolve();
+  }));
 };
 
 exports.compile = compile;
