@@ -1,17 +1,7 @@
-const { statSync } = require("fs-extra");
-const find = require("find");
-const path = require("path");
 const gulp = require("gulp");
-var ts = require("gulp-typescript");
-const {readdir} = require('fs/promises');
+const ts = require("gulp-typescript");
+const {getDirectories} = require("./utils");
 const merge = require("merge2");
-
-exports.compile = compile
-
-const getDirectories = async source =>
-  (await readdir(source, { withFileTypes: true }))
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name)
 
 async function compile() {
   // detect if running on an AzDevOps build agent
@@ -33,28 +23,6 @@ async function compile() {
   });
   console.log("RUNNING", running.length);
   return merge(running);
-  //console.log(tsProject);
-  //await tsProject.src().pipe(tsProject()).js.pipe(gulp.dest("dist/tasks/"+dir))    
 };
 
-function onBuild(done) {
-  return function (err, result) {
-    if (err) {
-      console.error(`Webpack error:\n${err}`);
-      if (done) {
-        done();
-      }
-    } else {
-      result.stats.forEach((stats) => {
-        Object.keys(stats.compilation.assets).forEach(function (key) {
-          console.log(`Webpack: output ${key}`);
-        });
-        const size = statSync(path.join(stats.compilation.outputOptions.path, stats.compilation.outputOptions.filename)).size;
-        console.log(`Webpack: finished, size = ${size}`);
-      });
-      if (done) {
-        done();
-      }
-    }
-  };
-}
+exports.compile = compile;

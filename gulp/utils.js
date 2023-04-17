@@ -1,5 +1,6 @@
 const { readdir } = require('fs/promises');
 const ncp = require('child_process');
+var shell = require('shelljs');
 
 const getDirectories = async source =>
   (await readdir(source, { withFileTypes: true }))
@@ -29,6 +30,22 @@ const run = (cl, inheritStreams, noHeader) => {
   }
   return (output || '').toString().trim();
 }
+const shellAssert = () => {
+  var errMsg = shell.error();
+  if (errMsg) {
+      throw new Error(errMsg);
+  }
+}
+const cd = (dir) => {
+  shell.cd(dir);
+  shellAssert();
+}
+const pwd = () =>{
+  return shell.pwd();
+}
 
 module.exports.getDirectories = getDirectories;
 module.exports.run = run;
+module.exports.cd = cd;
+module.exports.shellAssert = shellAssert;
+module.exports.pwd = pwd;

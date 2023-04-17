@@ -7,8 +7,8 @@ const merge2 = require("merge2");
 
 
 const buildExtensionFile = async () => {
-    var manifest = JSON.parse(fs.readFileSync(path.join("extension", "extension-manifest.json")));
-    var taskContributionTemplate = JSON.parse(fs.readFileSync(path.join("extension", "task-template.json")));
+    var manifest = JSON.parse(await fs.readFile(path.join("extension", "extension-manifest.json")));
+    var taskContributionTemplate = JSON.parse(await fs.readFile(path.join("extension", "task-template.json")));
     const tasks = await getDirectories("src/tasks");
     const contributions = tasks.map(dir=>{
         const contribution = {...taskContributionTemplate};
@@ -18,10 +18,9 @@ const buildExtensionFile = async () => {
         return contribution;
     });
     manifest.contributions = contributions;
-    fs.writeFileSync(path.join("dist","vss-extension.json"), JSON.stringify(manifest));
-    const overviewCopy = gulp.src("extension/overview.md").pipe(gulp.dest("dist"));
-    const assetCopy = gulp.src("extension/assets/**").pipe(gulp.dest("dist/assets"));
-    return merge2(overviewCopy,assetCopy);
+    await fs.copyFile("extension/overview.md", "dist/overview.md")
+    await fs.copy("extension/assets/", "dist/assets");
+    await fs.writeFile(path.join("dist","vss-extension.json"), JSON.stringify(manifest));
 }
 
 module.exports.buildExtensionFile = buildExtensionFile;
