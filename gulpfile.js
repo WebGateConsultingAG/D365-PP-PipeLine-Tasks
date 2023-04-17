@@ -2,18 +2,21 @@ const gulp = require("gulp");
 
 const clean = require("./gulp/clean").clean;
 const compile = require("./gulp/compile").compile;
-gulp.task("clean", clean);
-gulp.task("compile", compile);
-gulp.task("recompile", gulp.series(clean, compile));
 
 //const lint = require("./gulp/lint");
 //const test = require("./gulp/test");
 //const restore = require("./gulp/restore");
-//const pack = require("./gulp/pack");
+const pack = require("./gulp/pack").pack;
+const buildExtensionFile = require("./gulp/buildExtensionFile").buildExtensionFile;
+const createVsixPackage = require("./gulp/createVsixPackage").createVsixPackage;
 
 exports.clean = clean;
 exports.compile = compile;
-exports.recompile = 
+exports.recompile = gulp.series(clean, compile);
+exports.packOnly = pack;
+exports.pack = gulp.series(clean, compile,pack, buildExtensionFile,createVsixPackage);
+exports.buildExtensionFile = buildExtensionFile;
+exports.createVsixPackage = createVsixPackage;
 //exports.lint = lint;
 //exports.test = test.all;
 //exports.unitTest = test.unitTest;
