@@ -48,7 +48,7 @@
     ],
     "execution": {
         "Node": {
-            "target": "index.js"
+            "target": "tasks/checksolutionversion/index.js"
         }
     }
 }
