@@ -14,6 +14,5 @@ Please use the issues tracker in the home repo: <https://github.com/WebGateConsu
 
 # Release Notes
 
-{{NextReleaseVersion}}:
-- pac CLI 1.21.13
+
 

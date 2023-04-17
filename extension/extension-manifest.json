@@ -23,13 +23,9 @@
       "theme": "dark"
     },
     "icons": {
-      "default": "assets/images/PPDevTools.128x128.png"
+      "default": "assets/images/Icon128x128.png"
     },
-    "screenshots": [
-      {
-        "path": "assets/images/sample-pipeline.png"
-      }
-    ],
+    
     "content": {
       "details": {
         "path": "overview.md"
